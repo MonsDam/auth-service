@@ -1,0 +1,20 @@
+# Usa una imagen base oficial de Node.js
+FROM node:18-alpine
+
+# Configura el directorio de trabajo dentro del contenedor
+WORKDIR /app
+
+# Copia los archivos de tu proyecto al contenedor
+COPY package*.json ./
+
+# Instala las dependencias del proyecto
+RUN npm install
+
+# Copia el resto de los archivos de tu proyecto
+COPY . .
+
+# Expone el puerto que el servidor de Express usará (ajusta si es necesario)
+EXPOSE 3000
+
+# Comando para arrancar el servidor de Express
+CMD ["npm", "run", "dev"]
